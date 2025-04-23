@@ -1,1 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Quiz - LPP Rumah Bahasa</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 15px;
+    }
+    h1 {
+      color: #4a90e2;
+      margin: 0;
+    }
+    h2 {
+      color: #2c3e50;
+      font-size: 1.5em;
+    }
+    h3 {
+      color: #e74c3c;
+      margin-top: 25px;
+    }
+    .student-info {
+      background: #eaf2f8;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .options {
+      margin-left: 15px;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 0;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #357abd;
+    }
+    .score-display {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+    .matching {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .match-item {
+      display: flex;
+      align-items: center;
+    }
+    .match-item select {
+      margin-left: 10px;
+      padding: 5px;
+    }
+    .submission-confirmation {
+      text-align: center;
+      padding: 50px;
+      display: none;
+    }
+    .submission-confirmation h2 {
+      color: #4a90e2;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .submission-confirmation p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .retry-button {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .retry-button:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="quizContainer">
+    <header>
+      <h1>Practice Lab LPP RUMAH BAHASA</h1>
+      <h2>English Quiz</h2>
+      <h3>Indirect Questions & Airport Sequence</h3>
+    </header>
 
+    <div class="student-info">
+      <label for="name">Nama:</label>
+      <input type="text" id="name" required>
+      <div class="score-display" id="scoreDisplay">Skor: 0/100</div>
+    </div>
+
+    <form id="quizForm">
+      <h3>Section 1: Multiple Choice (12 Questions × 4 Points)</h3>
+      
+      <div class="question">
+
+        <p>1. "Could you tell me ______?"</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> A) where is the check-in counter</label>
+          <label><input type="radio" name="q1" value="B"> B) where the check-in counter is</label>
+          <label><input type="radio" name="q1" value="C"> C) where the check-in counter</label>
+          <label><input type="radio" name="q1" value="D"> D) where does the check-in counter</label>
+        </div>
+      </div>
+
+     <div class="question">
+     <p>2. What do you do first at the airport?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A) Go through security</label>
+        <label><input type="radio" name="q2" value="B"> B) Check your luggage</label>
+        <label><input type="radio" name="q2" value="C"> C) Board the plane</label>
+        <label><input type="radio" name="q2" value="D"> D) Show your passport</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>3. "Do you know ______?"</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A) what time the flight departs</label>
+        <label><input type="radio" name="q3" value="B"> B) what time does the flight depart</label>
+        <label><input type="radio" name="q3" value="C"> C) what time is the flight departing</label>
+        <label><input type="radio" name="q3" value="D"> D) what the flight departs time</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>4. After checking in, you should ______.</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A) buy a ticket</label>
+        <label><input type="radio" name="q4" value="B"> B) go to the departure lounge</label>
+        <label><input type="radio" name="q4" value="C"> C) pack your suitcase</label>
+        <label><input type="radio" name="q4" value="D"> D) call the pilot</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>5. "I wonder ______ late."</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> A) if the flight is</label>
+        <label><input type="radio" name="q5" value="B"> B) is the flight</label>
+        <label><input type="radio" name="q5" value="C"> C) whether is the flight</label>
+        <label><input type="radio" name="q5" value="D"> D) the flight is</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>6. At security, you must ______.</p>
+      <div class="options">
+        <label><input type="radio" name="q6" value="A"> A) show your boarding pass</label>
+        <label><input type="radio" name="q6" value="B"> B) eat a meal</label>
+        <label><input type="radio" name="q6" value="C"> C) buy souvenirs</label>
+        <label><input type="radio" name="q6" value="D"> D) read a magazine</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>7. "Would you mind telling me ______?"</p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A) how can I find gate 12</label>
+        <label><input type="radio" name="q7" value="B"> B) how I can find gate 12</label>
+        <label><input type="radio" name="q7" value="C"> C) how do I find gate 12</label>
+        <label><input type="radio" name="q7" value="D"> D) how to I find gate 12</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>8. Before boarding, passengers must ______.</p>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A) watch a movie</label>
+        <label><input type="radio" name="q8" value="B"> B) have their passports checked</label>
+        <label><input type="radio" name="q8" value="C"> C) visit the cockpit</label>
+        <label><input type="radio" name="q8" value="D"> D) clean the plane</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>9. "Can you explain ______?"</p>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A) why the flight was delayed</label>
+        <label><input type="radio" name="q9" value="B"> B) why was the flight delayed</label>
+        <label><input type="radio" name="q9" value="C"> C) why the flight delayed</label>
+        <label><input type="radio" name="q9" value="D"> D) why did the flight delay</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>10. When your flight is called, you should ______.</p>
+      <div class="options">
+        <label><input type="radio" name="q10" value="A"> A) leave the airport</label>
+        <label><input type="radio" name="q10" value="B"> B) queue at the gate</label>
+        <label><input type="radio" name="q10" value="C"> C) check your luggage again</label>
+        <label><input type="radio" name="q10" value="D"> D) take a taxi</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>11. "Do you have any idea ______?"</p>
+      <div class="options">
+        <label><input type="radio" name="q11" value="A"> A) where is lost and found</label>
+        <label><input type="radio" name="q11" value="B"> B) where lost and found is</label>
+        <label><input type="radio" name="q11" value="C"> C) where lost and found</label>
+        <label><input type="radio" name="q11" value="D"> D) where does lost and found</label>
+      </div>
+    </div>
+    
+    <div class="question">
+      <p>12. The last step before takeoff is ______.</p>
+      <div class="options">
+        <label><input type="radio" name="q12" value="A"> A) fastening your seatbelt</label>
+        <label><input type="radio" name="q12" value="B"> B) buying a ticket</label>
+        <label><input type="radio" name="q12" value="C"> C) packing your bag</label>
+        <label><input type="radio" name="q12" value="D"> D) chatting with flight attendants</label>
+      </div>
+    </div>
+
+      <!-- Questions 3-12 would follow the same pattern -->
+      <!-- [...] -->
+
+      <h3>Section 2: Matching (8 Questions × 4 Points)</h3>
+      
+      <div class="matching">
+        <!-- Left column (questions) -->
+       <div>
+          <p>1. How often do the buses come?</p>
+          <p>2. Is there enough space for luggage on the train?</p>
+          <p>3. How many taxis are there at the station?</p>
+          <p>4. Do subway tickets cost a lot?</p>
+          <p>5. How much time do we have to transfer?</p>
+          <p>6. Are there plenty of bike lanes here?</p>
+          <p>7. How far is the nearest bus stop?</p>
+          <p>8. Does the ferry carry many passengers?</p>
+       </div>
+
+      <div>
+        <div class="match-item">
+          <select name="m1">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m2">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m3">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m4">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m5">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m6">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m7">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+        
+        <div class="match-item">
+          <select name="m8">
+            <option value="">--Pilih--</option>
+            <option value="A">A) Only a few, especially at night.</option>
+            <option value="B">B) Yes, hundreds! It's very crowded.</option>
+            <option value="C">C) Every 15 minutes.</option>
+            <option value="D">D) Just 5 minutes—hurry!</option>
+            <option value="E">E) Not too much; they're quite cheap.</option>
+            <option value="F">F) Yes, but not too many.</option>
+            <option value="G">G) About 200 meters from here.</option>
+            <option value="H">H) Yes, but only a little.</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+      <button type="button" onclick="calculateScore()">Submit Answers</button>
+    </form>
+  </div>
+
+  <div class="container submission-confirmation" id="confirmationContainer">
+    <h2>JAWABAN SUDAH TERKIRIM</h2>
+    <p>Terima kasih telah mengerjakan quiz!</p>
+    <p>Skor Anda: <span id="finalScoreDisplay">0</span>/100</p>
+    <button class="retry-button" onclick="retryQuiz()">Kerjakan Ulang</button>
+  </div>
+
+  <script>
+    function calculateScore() {
+      const name = document.getElementById('name').value;
+      if (!name) {
+        alert("Silakan masukkan nama Anda!");
+        return;
+      }
+
+      let score = 0;
+      const correctAnswers = {
+        q1: "B", q2: "B", q3: "A", q4: "B", q5: "A", q6: "A",
+        q7: "B", q8: "B", q9: "A", q10: "B", q11: "B", q12: "A",
+        m1: "C", m2: "H", m3: "A", m4: "E", m5: "D", m6: "F", m7: "G", m8: "B"
+      };
+
+      for (const [question, answer] of Object.entries(correctAnswers)) {
+        const selected = document.querySelector(`input[name="${question}"]:checked`) || 
+                        document.querySelector(`select[name="${question}"]`);
+        if (selected && selected.value === answer) {
+          score += 4;
+        }
+      }
+
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/100`;
+      sendToGoogleSheets(name, score);
+    }
+
+    function sendToGoogleSheets(name, score) {
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbz4_Q_blvM_Z83SFPllexDRCfIugUL24_yC5zJVtirYWIZ3swFTpeb7Btj6_rIWYD1v5g/exec';
+      
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, score })
+      })
+      .then(() => {
+        document.getElementById('quizContainer').style.display = 'none';
+        document.getElementById('confirmationContainer').style.display = 'block';
+        document.getElementById('finalScoreDisplay').textContent = score;
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        alert("Gagal mengirim skor. Silakan coba lagi.");
+      });
+    }
+
+    function retryQuiz() {
+      document.getElementById('quizForm').reset();
+      document.getElementById('scoreDisplay').textContent = 'Skor: 0/100';
+      document.getElementById('confirmationContainer').style.display = 'none';
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('name').focus();
+    }
+  </script>
+</body>
+</html>
